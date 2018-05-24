@@ -20,7 +20,6 @@ before_build:
   - dotnet restore -s https://api.nuget.org/v3/index.json
   - choco install opencover.portable
   - choco install codecov
-  - nuget restore 
 build_script:
   - cmd: dotnet pack -c Release RollingWindowExtremes
 test_script:
