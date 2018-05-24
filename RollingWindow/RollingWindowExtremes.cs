@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RollingWindowExtremes
+namespace RollingWindow
 {
     public class RollingWindowExtremes<T> where T : IComparable
     {

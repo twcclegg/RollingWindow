@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Xunit;
 
-namespace RollingWindowExtremes.Test
+namespace RollingWindow.Test
 {
-    public class UnitTest1
+    public class ExtremesTest
     {
 
-        private ImmutableList<int> testData = new List<int>
+        private readonly ImmutableList<int> _testData = new List<int>
         {
             817, 191, 612, 538, 390, 119, 425, 123, 409, 792, 866, 459, 272, 537, 870,
             353, 645, 813, 718, 352, 614, 722, 603, 003, 578, 446, 564, 873, 818, 299,
@@ -38,9 +37,9 @@ namespace RollingWindowExtremes.Test
             for (var size = 1; size < 300; ++size)
             {
                 var window = new RollingWindowExtremes<int>(size);
-                for (var i = 0; i < testData.Count; ++i)
+                for (var i = 0; i < _testData.Count; ++i)
                 {
-                    window.AddItem(testData[i]);
+                    window.AddItem(_testData[i]);
                     var min = 1000;
                     var max = 0;
                     for (var j = i - size + 1; j <= i; ++j)
@@ -48,11 +47,11 @@ namespace RollingWindowExtremes.Test
                         if (j < 0)
                             j = 0;
 
-                        if (testData[j] > max)
-                            max = testData[j];
+                        if (_testData[j] > max)
+                            max = _testData[j];
 
-                        if (testData[j] < min)
-                            min = testData[j];
+                        if (_testData[j] < min)
+                            min = _testData[j];
                     }
 
                     Assert.Equal(min, window.GetCurrentLow());
