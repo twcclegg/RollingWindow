@@ -4,6 +4,10 @@ namespace RollingWindowExtremes
 {
     public class RollingWindowExtremes<T> where T : IComparable
     {
+        /// <summary>
+        /// Computes the max and min of a stream of IComparables in O(1) time
+        /// </summary>
+        /// <param name="window">The size of the window to keep the max and min for</param>
         public RollingWindowExtremes(int window)
         {
             _window = window;
@@ -18,35 +22,39 @@ namespace RollingWindowExtremes
         private int _highLocation;
         private int _currentLocation;
 
-        private bool initilized;
+        private bool _initilized;
 
         private readonly T[] _rollWinArray;
 
 
-        //====================================== my initialy proposed caching algo
-        public void AddItem(T currentNum)
+        /// <summary>
+        /// Adds a new item to the list as the newest, the oldest one is removed
+        /// and the max and min are recalculated.
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddItem(T item)
         {
-            if (!initilized)
+            if (!_initilized)
             {
-                _low = currentNum;
-                _high = currentNum;
-                initilized = true;
+                _low = item;
+                _high = item;
+                _initilized = true;
             }
 
-            _rollWinArray[_currentLocation] = currentNum;
+            _rollWinArray[_currentLocation] = item;
 
-            if (currentNum.CompareTo(_low) <= 0)
+            if (item.CompareTo(_low) <= 0)
             {
                 _lowLocation = _currentLocation;
-                _low = currentNum;
+                _low = item;
             }
             else if (_currentLocation == _lowLocation)
                 ReFindLowest();
 
-            if (currentNum.CompareTo(_high) >= 0)
+            if (item.CompareTo(_high) >= 0)
             {
                 _highLocation = _currentLocation;
-                _high = currentNum;
+                _high = item;
             }
             else if (_currentLocation == _highLocation)
                 ReFindHeighest();

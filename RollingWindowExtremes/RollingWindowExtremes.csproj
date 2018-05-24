@@ -1,7 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>RollingWindowExtremes</Title>
+    <Description>Provoides a method to track both the rolling minimum and maximum of a stream of numbers in O(1) time</Description>
+    <AssemblyTitle>RollingWindowExtremes</AssemblyTitle>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Authors>Tom Clegg</Authors>
+    <TargetFrameworks>net40;netstandard1.3;netstandard2.0;portable-net45+win8+wpa81+wp8</TargetFrameworks>
+    <AssemblyName>RollingWindowExtremes</AssemblyName>
+    <PackageId>RollingWindowExtremes</PackageId>
+    <PackageTags>rolling statistics minimum maximum ascending minima</PackageTags>
+    <PackageProjectUrl>https://github.com/twcclegg/RollingWindowExtremes</PackageProjectUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/twcclegg/libphonenumber-csharp</RepositoryUrl>
+  </PropertyGroup>
+
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8'">
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <DefineConstants>PORTABLE</DefineConstants>
+    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile259</NugetTargetMoniker>
+    <LanguageTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</LanguageTargets>
   </PropertyGroup>
 
 </Project>
