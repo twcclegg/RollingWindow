@@ -11,8 +11,8 @@ init:
 image: Visual Studio 2017
 configuration: Release
 environment:
-  COVERALLS_REPO_TOKEN: b9992737-ee28-4d1f-9f83-8227478031b2
-    secure: 
+  COVERALLS_REPO_TOKEN:
+    secure: b9992737-ee28-4d1f-9f83-8227478031b2
 pull_requests:
   do_not_increment_build_number: true
 before_build:
