@@ -6,7 +6,7 @@ init:
       }
       else
       {
-        Update-AppveyorBuild -Version "$(((nuget list RollingWindowExtremes -Source https://api.nuget.org/v3/index.json | findstr "RollingWindowExtremes[^.-]") -split ' ')[1])-$($env:APPVEYOR_REPO_COMMIT.substring(0,7))"
+        Update-AppveyorBuild -Version "$(((nuget list RollingWindow -Source https://api.nuget.org/v3/index.json | findstr "RollingWindow[^.-]") -split ' ')[1])-$($env:APPVEYOR_REPO_COMMIT.substring(0,7))"
       }
 image: Visual Studio 2017
 configuration: Release
@@ -21,12 +21,12 @@ before_build:
   - choco install opencover.portable
   - choco install codecov
 build_script:
-  - cmd: dotnet pack -c Release RollingWindowExtremes
+  - cmd: dotnet pack -c Release RollingWindow
 test_script:
-  - OpenCover.Console.exe -register:user -target:dotnet.exe -targetargs:"test RollingWindowExtremes.Test\RollingWindowExtremes.Test.csproj" -filter:"+[RollingWindowExtremes]* -[RollingWindowExtremes.Test]*" -oldStyle
+  - OpenCover.Console.exe -register:user -target:dotnet.exe -targetargs:"test RollingWindow.Test\RollingWindow.Test.csproj" -filter:"+[RollingWindow]* -[RollingWindow.Test]*" -oldStyle
   - codecov -f results.xml
 artifacts:
-  - path: RollingWindowExtremes\bin\Release\RollingWindowExtremes.*
+  - path: RollingWindow\bin\Release\RollingWindow.*
 nuget:
   account_feed: true
 deploy:
